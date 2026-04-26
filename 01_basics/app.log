@@ -1,0 +1,4 @@
+[2026-04-26 18:47:13] INFO: Division successful: 10 / 2 = 5.0
+[2026-04-26 18:47:13] ERROR: Division by zero attempted: 5 / 0
+[2026-04-26 18:47:13] INFO: User 'Tarun' logged in successfully
+[2026-04-26 18:47:13] WARNING: Failed login attempt for user 'Tarun'
