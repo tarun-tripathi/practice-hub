@@ -1,9 +1,13 @@
-# Q9 - Password Generator
+# Q9: Password Generator
+# Task: Create a PasswordGenerator class with options for length,
+# uppercase, lowercase, digits, and symbols
+# Use secrets module instead of random for cryptographic safety
+
 import secrets
 import string
 
 class PasswordGenerator:
-    def __init__(self, length=12, uppercase=True, lowercase=True, 
+    def __init__(self, length=12, uppercase=True, lowercase=True,
                  digits=True, symbols=True):
         self.length = length
         self.uppercase = uppercase
@@ -19,15 +23,12 @@ class PasswordGenerator:
         if self.symbols:   chars += string.punctuation
 
         if not chars:
-            print("❌ Enable at least one character type!")
+            print("Enable at least one character type.")
             return None
 
-        password = ''.join(secrets.choice(chars) for _ in range(self.length))
-        print(f"🔐 Generated Password: {password}")
+        password = "".join(secrets.choice(chars) for _ in range(self.length))
+        print(f"Password: {password}")
         return password
-
-# Test
-print("=== Password Generator ===\n")
 
 gen1 = PasswordGenerator(length=8)
 gen1.generate()
@@ -35,6 +36,5 @@ gen1.generate()
 gen2 = PasswordGenerator(length=16, symbols=False)
 gen2.generate()
 
-gen3 = PasswordGenerator(length=20, uppercase=True, 
-                          lowercase=True, digits=True, symbols=True)
+gen3 = PasswordGenerator(length=20)
 gen3.generate()

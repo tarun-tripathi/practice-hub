@@ -1,4 +1,7 @@
-# Q5 - BankAccount Class
+# Q5: BankAccount Class
+# Task: Create a BankAccount class with deposit, withdraw, balance check
+# Extra: Raise custom InsufficientFundsError when balance is not enough
+
 class InsufficientFundsError(Exception):
     pass
 
@@ -9,26 +12,25 @@ class BankAccount:
 
     def deposit(self, amount):
         if amount <= 0:
-            print("Amount must be positive!")
+            print("Amount must be positive.")
             return
         self.balance += amount
-        print(f"✅ Deposited ₹{amount} | Balance: ₹{self.balance}")
+        print(f"Deposited {amount}. Balance: {self.balance}")
 
     def withdraw(self, amount):
         if amount <= 0:
-            print("Amount must be positive!")
+            print("Amount must be positive.")
             return
         if amount > self.balance:
             raise InsufficientFundsError(
-                f"❌ Cannot withdraw ₹{amount}! Available: ₹{self.balance}"
+                f"Cannot withdraw {amount}. Available balance: {self.balance}"
             )
         self.balance -= amount
-        print(f"✅ Withdrew ₹{amount} | Balance: ₹{self.balance}")
+        print(f"Withdrew {amount}. Balance: {self.balance}")
 
     def check_balance(self):
-        print(f"💰 {self.owner}'s Balance: ₹{self.balance}")
+        print(f"{self.owner} Balance: {self.balance}")
 
-# Test
 acc = BankAccount("Tarun", 1000)
 acc.check_balance()
 acc.deposit(500)

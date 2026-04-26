@@ -1,32 +1,34 @@
-# Q2 - Student Record System
+# Q2: Student Record System
+# Task: Build a dictionary based system with add, update, delete, search operations
+# Key = roll number, Value = student details
+
 students = {}
 
 def add_student(roll, name, marks):
     students[roll] = {"name": name, "marks": marks}
-    print(f"Student {name} added!")
+    print(f"Student {name} added.")
 
 def update_student(roll, name=None, marks=None):
     if roll in students:
         if name: students[roll]["name"] = name
         if marks: students[roll]["marks"] = marks
-        print(f"Roll {roll} updated!")
+        print(f"Roll {roll} updated.")
     else:
-        print("Student not found!")
+        print("Student not found.")
 
 def delete_student(roll):
     if roll in students:
         del students[roll]
-        print(f"Roll {roll} deleted!")
+        print(f"Roll {roll} deleted.")
     else:
-        print("Student not found!")
+        print("Student not found.")
 
 def search_student(roll):
     if roll in students:
         print(f"Found: {students[roll]}")
     else:
-        print("Student not found!")
+        print("Student not found.")
 
-# Test
 add_student(101, "Tarun", 95)
 add_student(102, "Raj", 78)
 search_student(101)

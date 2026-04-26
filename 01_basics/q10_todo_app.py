@@ -1,4 +1,7 @@
-# Q10 - TODO App
+# Q10: TODO App
+# Task: Build a TODO app using OOP with add, delete, mark complete operations
+# Extra: Save and load tasks from a JSON file so data persists
+
 import json
 import os
 
@@ -23,34 +26,34 @@ class TodoManager:
         task = Task(id, title)
         self.tasks.append(task)
         self.save_to_json()
-        print(f"✅ Added: '{title}'")
+        print(f"Added: {title}")
 
     def delete(self, id):
         task = self._find(id)
         if task:
             self.tasks.remove(task)
             self.save_to_json()
-            print(f"🗑️ Deleted task {id}")
+            print(f"Deleted task {id}")
         else:
-            print("❌ Task not found!")
+            print("Task not found.")
 
     def mark_complete(self, id):
         task = self._find(id)
         if task:
             task.completed = True
             self.save_to_json()
-            print(f"🎉 Task {id} marked complete!")
+            print(f"Task {id} marked complete.")
         else:
-            print("❌ Task not found!")
+            print("Task not found.")
 
     def view(self):
         if not self.tasks:
-            print("📭 No tasks!")
+            print("No tasks.")
             return
-        print("\n📋 TODO List:")
+        print("TODO List:")
         for t in self.tasks:
-            status = "✅" if t.completed else "⬜"
-            print(f"{status} [{t.id}] {t.title}")
+            status = "[Done]" if t.completed else "[    ]"
+            print(f"{status} {t.id}. {t.title}")
 
     def _find(self, id):
         for t in self.tasks:
@@ -59,20 +62,19 @@ class TodoManager:
         return None
 
     def save_to_json(self):
-        with open(FILE, 'w') as f:
+        with open(FILE, "w") as f:
             json.dump([t.to_dict() for t in self.tasks], f, indent=4)
 
     def load_from_json(self):
         if os.path.exists(FILE):
-            with open(FILE, 'r') as f:
+            with open(FILE, "r") as f:
                 data = json.load(f)
                 self.tasks = [Task(**t) for t in data]
 
-# Test
 todo = TodoManager()
 todo.add("Complete Q10")
 todo.add("Push to GitHub")
-todo.add("Start Q Intermediate")
+todo.add("Start Intermediate")
 todo.view()
 todo.mark_complete(1)
 todo.delete(2)
